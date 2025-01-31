@@ -49,6 +49,20 @@ app.post("/fav_ids_post",async(req,res)=>{
     }
 })
 
+
+app.put("/update/:name",async(req,res)=>{
+    console.log(req.params);
+    console.log(req.body);
+    let result = await favModel.updateOne({
+        "name":req.params.name
+    },req.body);
+    if(result){
+        res.send("data updated successfully !!!");
+    }
+    else{
+        res.send("unable to update the data");
+    }
+})
 app.listen(port,()=>{
     console.log(`server started at http:localhost:${port}`);
 })
